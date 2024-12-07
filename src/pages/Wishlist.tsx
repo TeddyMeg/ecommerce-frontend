@@ -5,10 +5,10 @@ import { Button } from '../components/ui/Button';
 
 export default function Wishlist() {
   const { items, removeItem } = useWishlistStore();
-  const addToCart = useCartStore((state) => state.addItem);
+  const addToCart = useCartStore((state) => state.addItemById);
 
-  const handleAddToCart = (productId: number) => {
-    addToCart({ productId, quantity: 1 });
+  const handleAddToCart = (id: number) => {
+    addToCart(id);
   };
 
   return (
