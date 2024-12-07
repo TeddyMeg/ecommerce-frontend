@@ -1,10 +1,10 @@
-import { useAuthStore } from '../store/useAuthStore';
+// import { useAuthStore } from '../store/useAuthStore';
 import { useState } from 'react';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 
 export default function Account() {
-  const { user } = useAuthStore();
+  // const { user } = useAuthStore();
   const [formData, setFormData] = useState({
     firstName: 'MJ',
     lastName: 'Simel',

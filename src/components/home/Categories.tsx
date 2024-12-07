@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Smartphone, Monitor, Watch, Camera, Headphones, Gamepad, Loader } from 'lucide-react';
+import { Smartphone, Monitor, Watch, Camera, Gamepad, Loader } from 'lucide-react';
 import { useCategories } from '../../hooks/useCategories';
 import { useProducts } from '../../hooks/useProducts';
 import { ProductCard } from '../product/ProductCard';
