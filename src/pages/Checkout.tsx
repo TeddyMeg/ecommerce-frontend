@@ -39,7 +39,7 @@ export default function Checkout() {
     return total + item.price * item.quantity;
   }, 0);
 
-  const onSubmit = async (data: CheckoutFormData) => {
+  const onSubmit = async () => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));

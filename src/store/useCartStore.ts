@@ -11,7 +11,8 @@ interface CartItem {
 
 interface CartState {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, 'quantity'>) => void;
+  addItem: (item: CartItem) => void;
+  addItemById: (id: number) => void;
   removeItem: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
   clearCart: () => void;
@@ -19,7 +20,7 @@ interface CartState {
 
 export const useCartStore = create<CartState>()(
   persist(
-    (set) => ({
+    (set,get) => ({
       items: [],
       addItem: (item) =>
         set((state) => {
@@ -28,13 +29,14 @@ export const useCartStore = create<CartState>()(
             return {
               items: state.items.map((i) =>
                 i.id === item.id
-                  ? { ...i, quantity: i.quantity + 1 }
+                  ? { ...i, quantity: i.quantity + item.quantity }
                   : i
               ),
             };
           }
-          return { items: [...state.items, { ...item, quantity: 1 }] };
+          return { items: [...state.items, item] };
         }),
+      addItemById: async (id: number) => { const response = await fetch(`/api/products/${id}`); const product = await response.json(); const item = { id: product.id, title: product.title, price: product.price, image: product.image, quantity: 1, }; get().addItem(item); },  
       removeItem: (id) =>
         set((state) => ({
           items: state.items.filter((item) => item.id !== id),
